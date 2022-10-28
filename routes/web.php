@@ -31,3 +31,5 @@ Route::get('/form', Form::class);
 route::get('/action', Action::class);
 Route::get('/product', Product::class);
 Route::get('/contact', Contact::class);
+
+//CRUD
