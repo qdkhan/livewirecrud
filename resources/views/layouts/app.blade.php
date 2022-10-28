@@ -29,5 +29,10 @@
 
    
 @livewireScripts
+<script>
+    window.on('studentAdded', ()=>{
+        $('#addStudentModel').hide();
+    });
+</script>
 </body>
 </html>

@@ -25,7 +25,7 @@ class Contact extends Component
             'message' => 'required|min:10'
         ]);
 
-        dd($this->name, $this->email, $this->phone, $this->message);
+        // dd($this->name, $this->email, $this->phone, $this->message);
     }
 
     public function render()
