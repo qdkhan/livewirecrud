@@ -3,11 +3,12 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create Student</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Update Student</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form>
+            <input type="hidden" id="ids" wire:model="ids">
             <div class="mb-3">
                 <label for="firstname" class="form-label">First Name<span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="firstname" wire:model.delays.2000ms="firstname" placeholder="Input Your First Name Here">

@@ -26,12 +26,14 @@
 </head>
 <body>
    {{$slot}} 
-
    
 @livewireScripts
 <script>
-    window.on('studentAdded', ()=>{
-        $('#addStudentModel').hide();
+    var myModal = new bootstrap.Modal(document.getElementById('addStudentModel'), {
+    keyboard: false
+    })
+    window.livewire.on('studentAdded', ()=>{
+        myModal.hide();
     });
 </script>
 </body>

@@ -11,7 +11,7 @@ class Students extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $firstname, $lastname, $email, $phone;
+    public $firstname, $lastname, $email, $phone, $ids;
 
     // public function updated($fields){
     //     $this->validateOnly($fields, [
@@ -49,14 +49,14 @@ class Students extends Component
         ]);
 
         StudentModel::create($validateData);
-        session()->flash('message', 'Student Created Successfully');
+        session()->flash('success', 'Student Created Successfully');
         $this->resetInputFields();
         $this->emit('studentAdded');
     }
 
     public function render()
     {
-        $students = StudentModel::select('id', 'firstname', 'lastname', 'email', 'phone')->paginate(10);
+        $students = StudentModel::select('id', 'firstname', 'lastname', 'email', 'phone')->orderBy('id', 'DESC')->paginate(10);
         return view('livewire.students', ['students' => $students]);
     }
 }

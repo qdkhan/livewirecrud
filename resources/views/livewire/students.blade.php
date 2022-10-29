@@ -9,6 +9,9 @@
                             <h3>Student List
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudentModel">Add New Student</button>
                             </h3>
+                            @if(session()->has('success'))
+                                <div class="alert alert-success" role="alert">{{session()->get('success')}}</div>
+                            @endif
                             <div class="card-body">
                             <table class="table table-primary table-striped">
                                 <thead>
