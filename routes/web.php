@@ -21,9 +21,9 @@ use App\Http\Livewire\Students;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/post', Post::class);
 Route::get('/user', User::class);
@@ -35,3 +35,4 @@ Route::get('/contact', Contact::class);
 
 //CRUD
 Route::get('/student', Students::class);
+Route::get('/', Students::class);

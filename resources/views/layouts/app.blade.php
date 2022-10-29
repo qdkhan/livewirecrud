@@ -35,6 +35,13 @@
     window.livewire.on('studentAdded', ()=>{
         myModal.hide();
     });
+
+    var myModal = new bootstrap.Modal(document.getElementById('updateStudentModel'), {
+    keyboard: false
+    })
+    window.livewire.on('studentUpdated', ()=>{
+        myModal.hide();
+    });
 </script>
 </body>
 </html>
