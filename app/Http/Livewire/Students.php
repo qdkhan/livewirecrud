@@ -11,7 +11,7 @@ class Students extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $firstname, $lastname, $email, $phone, $ids;
+    public $firstname, $lastname, $email, $phone, $ids, $searchRecords;
 
     // public function updated($fields){
     //     $this->validateOnly($fields, [
@@ -111,7 +111,12 @@ class Students extends Component
 
     public function render()
     {
-        $students = StudentModel::select('id', 'firstname', 'lastname', 'email', 'phone')->orderBy('id', 'DESC')->paginate(10);
+        $searchRecords = '%'.$this->searchRecords.'%';
+        $students = StudentModel::where('firstname', 'LIKE', $searchRecords)
+        ->orWhere('lastname', 'LIKE', $searchRecords)
+        ->orWhere('email', 'LIKE', $searchRecords)
+        ->orWhere('phone', 'LIKE', $searchRecords)
+        ->select('id', 'firstname', 'lastname', 'email', 'phone')->orderBy('id', 'DESC')->paginate(10);
         return view('livewire.students', ['students' => $students]);
     }
 }

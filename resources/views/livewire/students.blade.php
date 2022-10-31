@@ -7,12 +7,19 @@
                 <div class="col-md-10 offset-md-1">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Student List
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudentModel">Add New Student</button>
-                            </h3>
-                            @if(session()->has('success'))
-                                <div class="alert alert-success" role="alert">{{session()->get('success')}}</div>
-                            @endif
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h3>Student List
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudentModel">Add New Student</button>
+                                    </h3>
+                                    @if(session()->has('success'))
+                                        <div class="alert alert-success" role="alert">{{session()->get('success')}}</div>
+                                    @endif
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" placeholder="Type Your Search" id="searchRecords" wire:model.delays.2000ms="searchRecords">
+                                </div>
+                            </div>    
                             <div class="card-body">
                             <table class="table table-primary table-striped">
                                 <thead>
