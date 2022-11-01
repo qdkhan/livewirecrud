@@ -36,6 +36,20 @@
                     <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
+            <div class="col-md-12 d-flex ">
+              <div class="col-md-6 mb-3">
+                  <label for="image" class="form-label">Upload Image<span class="text-danger">*</span></label>
+                  <input type="file" class="form-control" accept=".jpeg,.png,.jpg,.gif,.svg" id="image" wire:model="image">
+                  @error('image')
+                      <small class="text-danger">{{$message}}</small>
+                  @enderror
+              </div>
+              <div class="col-md-6 mb-3 text-center">
+                @if ($image && !$ids)
+                  <img style="object-fit:cover; width:130px; height:130px" src="{{$image->temporaryUrl()}}" class="border border-5 border-secondary rounded" />
+                @endif
+              </div>
+            </div>
         </form>
       </div>
       <div class="modal-footer">

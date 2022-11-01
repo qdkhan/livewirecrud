@@ -42,6 +42,24 @@
     window.livewire.on('studentUpdated', ()=>{
         myModal.hide();
     });
+   
+   /* function imgUpload(event) {
+    //One Way
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    var output = document.querySelector('.showImg');
+    output.src = url
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+     //Another Way
+    var output = document.querySelector('.showImg');
+    var reader = new FileReader();
+    reader.onload = function() {
+        output.src = reader.result
+    }
+    reader.readAsDataURL(event.target.files[0]);
+   } */
 </script>
 </body>
 </html>

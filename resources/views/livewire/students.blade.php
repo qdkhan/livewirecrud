@@ -26,6 +26,7 @@
                                     <tr>
                                         <td>#</td>
                                         <td>Name</td>
+                                        <td>Image</td>
                                         <td>Email</td>
                                         <td>Phone</td>
                                         <td colspan="">Action</td>
@@ -36,6 +37,7 @@
                                     <tr>
                                         <td>{{$student->id}}</td>
                                         <td>{{$student->firstname}} {{$student->lastname}}</td>
+                                        <td><img class="rounded-circle" style="object-fit:cover" src ="{{asset('storage/'.$student->image)}}" width="100" height="100"></td>
                                         <td>{{$student->email}}</td>
                                         <td>{{$student->phone}}</td>
                                         <td>

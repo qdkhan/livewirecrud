@@ -2,16 +2,17 @@
 
 namespace App\Http\Livewire;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 use App\Models\Student  AS StudentModel;
 
 use Livewire\Component;
 
 class Students extends Component
 {
-    use WithPagination;
+    use WithPagination, WithFileUploads;
     protected $paginationTheme = 'bootstrap';
 
-    public $firstname, $lastname, $email, $phone, $ids, $searchRecords;
+    public $firstname, $lastname, $email, $phone, $ids, $image, $searchRecords, $isUploaded =false;
 
     // public function updated($fields){
     //     $this->validateOnly($fields, [
@@ -38,6 +39,7 @@ class Students extends Component
             $this->lastname = '';
             $this->email = '';
             $this->phone = '';
+            $this->image = '';
     }
 
     public function store () {
@@ -46,8 +48,10 @@ class Students extends Component
             'lastname' => 'required|min:3',
             'email' => 'required|email',
             'phone' => 'required|min:10',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
+        $image = $this->image->store('files','public');
+        $validateData['image'] = $image;
         StudentModel::create($validateData);
         session()->flash('success', 'Student Created Successfully');
         $this->resetInputFields();
@@ -61,8 +65,7 @@ class Students extends Component
         $this->lastname = $student->lastname;
         $this->email = $student->email;
         $this->phone = $student->phone;
-        // dd($id);
-        // dd($student);
+        $this->image = $student->image;
     }
 
     public function update () {
@@ -87,6 +90,7 @@ class Students extends Component
             'lastname' => 'required|min:3',
             'email' => 'required|email',
             'phone' => 'required|min:10',
+            'image' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $student = StudentModel::find($this->ids);
@@ -116,7 +120,7 @@ class Students extends Component
         ->orWhere('lastname', 'LIKE', $searchRecords)
         ->orWhere('email', 'LIKE', $searchRecords)
         ->orWhere('phone', 'LIKE', $searchRecords)
-        ->select('id', 'firstname', 'lastname', 'email', 'phone')->orderBy('id', 'DESC')->paginate(10);
+        ->select('id', 'firstname', 'lastname', 'email', 'phone', 'image')->orderBy('id', 'DESC')->paginate(10);
         return view('livewire.students', ['students' => $students]);
     }
 }
