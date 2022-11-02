@@ -45,8 +45,12 @@
                   @enderror
               </div>
               <div class="col-md-6 mb-3 text-center">
-                @if ($image && !$ids)
+                <!-- @if ($image && !$ids)
                   <img style="object-fit:cover; width:130px; height:130px" src="{{$image->temporaryUrl()}}" class="border border-5 border-secondary rounded" />
+                @endif -->
+
+                @if ($image)
+                  <img style="object-fit:cover; width:130px; height:130px" src="{{ $isUploaded ? asset('storage/'.$image) : $image->temporaryUrl() }}" class="border border-5 border-secondary rounded" />
                 @endif
               </div>
             </div>
