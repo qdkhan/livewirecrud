@@ -34,6 +34,10 @@ class Students extends Component
     //     // dd($this->name, $this->email, $this->phone, $this->message);
     // }
 
+    public function updatedImage(){
+        $this->isUploaded=false;
+    }
+
     public function resetInputFields () {
             $this->firstname = '';
             $this->lastname = '';
@@ -66,6 +70,7 @@ class Students extends Component
         $this->email = $student->email;
         $this->phone = $student->phone;
         $this->image = $student->image;
+        $this->isUploaded = true;
     }
 
     public function update () {
@@ -93,6 +98,9 @@ class Students extends Component
             'image' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
+        $image = $this->image->store('files','public');
+        $validateData['image'] = $image;
+        
         $student = StudentModel::find($this->ids);
         $student->update($validateData);
         session()->flash('success', 'Record Updated Successfully');
