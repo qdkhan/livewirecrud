@@ -42,7 +42,12 @@
     window.livewire.on('studentUpdated', ()=>{
         myModal.hide();
     });
-   
+
+    // formId = document.querySelector('#multiImgUpload');
+    window.livewire.on('imageUploaded', ()=>{
+        document.querySelector('#multiImgUpload').reset();
+    });
+
    /* function imgUpload(event) {
     //One Way
     const file = event.target.files[0];

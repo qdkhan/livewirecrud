@@ -9,6 +9,7 @@ use App\Http\Livewire\Action;
 use App\Http\Livewire\Product;
 use App\Http\Livewire\Contact;
 use App\Http\Livewire\Students;
+use App\Http\Livewire\MultipleImages;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,6 @@ Route::get('/contact', Contact::class);
 //CRUD
 Route::get('/student', Students::class);
 Route::get('/', Students::class);
+
+//Multiple Image Upload
+Route::get('multiple-images', MultipleImages::class);
